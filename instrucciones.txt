@@ -1,0 +1,105 @@
+========================================================================
+   GUÍA PASO A PASO: CÓMO USAR EL SIMULADOR DE IMPRESORA ESC/POS (TCP)
+========================================================================
+
+Hola. Aquí tienes una guía detallada y súper sencilla para descargar, abrir y ejecutar este servidor simulador de impresora en tu computadora desde cero.
+
+Este simulador abre un servidor de red en el puerto 9100. Tu aplicación Android podrá buscar la dirección IP de tu computadora en la red local y conectarse para enviar impresiones de prueba.
+
+---
+
+PASO 1: DESCARGAR EL PROYECTO DESDE GITHUB
+-----------------------------------------
+Tienes dos formas de descargar el código:
+
+Opción A (La más rápida si no usas Git):
+1. Abre la página del repositorio en tu navegador web.
+2. Haz clic en el botón verde grande que dice "Code" (ubicado en la parte superior derecha de la lista de archivos).
+3. En el menú desplegable, haz clic en "Download ZIP".
+4. Busca el archivo ZIP descargado en tu computadora y descomprímelo (extrácelo) en la carpeta que prefieras (por ejemplo, en el Escritorio o Documentos).
+
+Opción B (Usando Git por terminal):
+1. Copia la URL del repositorio.
+2. Abre tu terminal favorita (Símbolo del sistema / CMD, PowerShell o Git Bash) y escribe:
+   git clone <URL_DEL_REPOSITORIO>
+3. Esto creará una carpeta con los archivos del proyecto.
+
+
+PASO 2: INSTALAR NODE.JS EN TU COMPUTADORA
+------------------------------------------
+Este servidor está desarrollado en Node.js, por lo que necesitas tenerlo instalado en tu computadora.
+
+1. Ve a la página oficial: https://nodejs.org/
+2. Descarga la versión "LTS" (es la versión recomendada y la más estable para la mayoría de los usuarios).
+3. Abre el instalador descargado y sigue las instrucciones en pantalla, presionando "Siguiente" (Next) en todo. No hace falta cambiar ninguna opción predeterminada.
+4. Reinicia tu computadora una vez finalizada la instalación (o al menos cierra y vuelve a abrir tus terminales) para asegurarte de que se apliquen los cambios en el sistema.
+
+
+PASO 3: ABRIR EL PROYECTO EN VISUAL STUDIO CODE
+-----------------------------------------------
+1. Abre el editor de código Visual Studio Code.
+2. En la barra superior, ve a:
+   Archivo -> Abrir carpeta... (File -> Open Folder...)
+3. Selecciona la carpeta donde descomprimiste o clonaste el proyecto (la carpeta que contiene los archivos `server.js`, `package.json`, etc.) y haz clic en Seleccionar carpeta.
+
+
+PASO 4: ABRIR LA TERMINAL INTEGRADA EN VS CODE
+----------------------------------------------
+1. En la parte superior de Visual Studio Code, haz clic en el menú "Terminal" y selecciona "New Terminal" (Nueva terminal).
+   *También puedes usar el atajo de teclado: Ctrl + ` (la tecla de acento grave al lado del número 1).*
+2. Verás que se abre una sección en la parte inferior de la pantalla con una línea de comandos ya posicionada dentro de la carpeta del proyecto.
+
+
+PASO 5: VERIFICAR LA INSTALACIÓN DE NODE.JS
+-------------------------------------------
+En la terminal integrada que acabas de abrir, escribe los siguientes comandos uno por uno para asegurarte de que Node.js y npm se instalaron correctamente:
+
+1. Escribe:
+   node -v
+   (Presiona Enter. Debería mostrarte una versión, por ejemplo: `v18.16.0` o superior).
+
+2. Escribe:
+   npm -v
+   (Presiona Enter. Debería mostrarte una versión de npm, por ejemplo: `9.5.1` o superior).
+
+
+PASO 6: INSTALAR DEPENDENCIAS (Opcional en este proyecto)
+---------------------------------------------------------
+Este simulador de impresora se ha construido utilizando únicamente módulos nativos de Node.js (como 'net' y 'fs') para que no tengas problemas de compatibilidad y sea súper rápido de ejecutar.
+
+Aun así, por buenas prácticas de proyectos de Node.js, ejecuta en la terminal integrada:
+   npm install
+
+(Verás que finaliza de inmediato o te indica que se agregaron 0 paquetes, lo cual es totalmente normal y correcto).
+
+
+PASO 7: INICIAR EL SERVIDOR DE LA IMPRESORA FALSA
+-------------------------------------------------
+Para poner en marcha el simulador de impresora, escribe cualquiera de los siguientes comandos en la terminal integrada y presiona Enter:
+
+   npm start
+
+O también puedes iniciarlo ejecutando directamente el archivo principal:
+
+   node server.js
+
+¡Listo! Verás un mensaje en la terminal indicando que el servidor ha iniciado con éxito y que está escuchando en el puerto 9100.
+
+
+PASO 8: CÓMO CONECTAR TU APLICACIÓN ANDROID
+-------------------------------------------
+Para que tu aplicación Android pueda conectarse con este simulador:
+
+1. Asegúrate de que tanto tu computadora como tu teléfono Android estén conectados a la misma red Wi-Fi o red local.
+2. Averigua la dirección IP local de tu computadora:
+   - En Windows: Abre la terminal (CMD) y escribe `ipconfig`. Busca la línea que dice "Dirección IPv4" (por lo general empieza con `192.168.x.x`).
+   - En macOS / Linux: Abre la terminal y escribe `ifconfig` o `ip a`.
+3. En tu código o interfaz de la aplicación Android:
+   - Configura la dirección IP de conexión con la dirección IP local de tu computadora.
+   - Configura el puerto en: 9100.
+4. Intenta enviar una prueba de impresión desde tu app Android.
+5. Verás en tiempo real en la terminal de VS Code de tu computadora cómo entra la conexión, los bytes hexadecimales recibidos y el texto legible decodificado.
+6. Toda impresión que reciba el servidor se guardará automáticamente de forma acumulativa en un archivo llamado `tickets.log` dentro de la carpeta del proyecto.
+
+---
+¡Mucha suerte con tus pruebas de desarrollo y conexión con Android! Si tienes cualquier duda, revisa la consola de Node.js para ver los logs detallados de error o conexión.
