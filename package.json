@@ -4,7 +4,9 @@
   "description": "Servidor TCP simulador de impresora ESC/POS en puerto 9100",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "liberar": "node kill-port.js",
+    "reiniciar": "node kill-port.js && node server.js"
   },
   "keywords": [
     "escpos",

@@ -65,6 +65,26 @@ const server = net.createServer((socket) => {
   });
 });
 
+// Manejo de errores del servidor
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error('\n======================================================================');
+    console.error(`[-] ERROR: El puerto ${PORT} ya está siendo usado por otra aplicación o servicio.`);
+    console.error('======================================================================');
+    console.error('[*] Esto pasa cuando el servidor ya se está ejecutando en otra terminal,');
+    console.error('[*] o cuando no se cerró correctamente la última vez.');
+    console.error('\n[✔] ¿CÓMO SOLUCIONARLO?');
+    console.error('    Ejecuta el siguiente comando para liberar el puerto automáticamente:');
+    console.error('    -->  npm run liberar');
+    console.error('\n    O inicia y libera todo en un solo comando:');
+    console.error('    -->  npm run reiniciar');
+    console.error('======================================================================\n');
+    process.exit(1);
+  } else {
+    console.error(`[-] Error en el servidor: ${err.message}`);
+  }
+});
+
 // Iniciar el servidor escuchando en todas las interfaces de red (0.0.0.0)
 server.listen(PORT, '0.0.0.0', () => {
   console.log('==================================================');
@@ -75,9 +95,4 @@ server.listen(PORT, '0.0.0.0', () => {
   console.log(`[*] Esperando conexiones desde cualquier IP de la red local...`);
   console.log(`[*] Los tickets se guardarán en: ${LOG_FILE}`);
   console.log('==================================================\n');
-});
-
-// Manejo de errores del servidor
-server.on('error', (err) => {
-  console.error(`[-] Error en el servidor: ${err.message}`);
 });
