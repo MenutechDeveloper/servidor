@@ -11,6 +11,7 @@ Es ideal para probar el descubrimiento de IPs, la conexión de red y el envío d
 - Muestra en consola los bytes en formato hexadecimal y el texto decodificado de forma legible.
 - Guarda un histórico de las impresiones en un archivo `tickets.log` local.
 - Desarrollado usando módulos nativos de Node.js, por lo que no requiere dependencias externas adicionales.
+- **Liberación de Puerto Integrada**: Permite cerrar fácilmente procesos que dejen bloqueado el puerto `9100`.
 
 ## Requisitos Previos
 
@@ -20,7 +21,7 @@ Es ideal para probar el descubrimiento de IPs, la conexión de red y el envío d
 
 1. Clona este repositorio o descarga el archivo ZIP y descomprímelo.
 2. Abre la terminal en el directorio del proyecto.
-3. Instala los paquetes opcionales/dependencias si lo deseas:
+3. Instala los paquetes opcionales/dependencias si lo deseas (no son estrictamente requeridos):
    ```bash
    npm install
    ```
@@ -34,6 +35,21 @@ Es ideal para probar el descubrimiento de IPs, la conexión de red y el envío d
    ```
 
 El servidor imprimirá una confirmación cuando se inicie con éxito.
+
+## Solución de Problemas: Error `EADDRINUSE` (Puerto ya en uso)
+
+Si el servidor arroja el error `EADDRINUSE` (significa que el puerto 9100 ya está ocupado por una instancia anterior o por otra aplicación), puedes usar los siguientes comandos de utilidad incluidos:
+
+- **Liberar puerto 9100 solamente:**
+  ```bash
+  npm run liberar
+  ```
+- **Liberar puerto y arrancar el servidor (todo en uno):**
+  ```bash
+  npm run reiniciar
+  ```
+
+Estos comandos funcionan de manera nativa en **Windows**, **macOS** y **Linux** sin instalar dependencias.
 
 ## Guía Detallada de Uso
 

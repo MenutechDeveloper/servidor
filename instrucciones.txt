@@ -86,6 +86,25 @@ O también puedes iniciarlo ejecutando directamente el archivo principal:
 ¡Listo! Verás un mensaje en la terminal indicando que el servidor ha iniciado con éxito y que está escuchando en el puerto 9100.
 
 
+========================================================================
+¡IMPORTANTE! RESOLVER ERROR "EADDRINUSE" (PUERTO YA EN USO)
+========================================================================
+Si al arrancar el servidor ves un error rojo que dice algo como:
+`listen EADDRINUSE: address already in use 0.0.0.0:9100`
+
+Significa que el puerto 9100 ya está ocupado por otra terminal de VS Code activa o por otra aplicación que cerraste a medias. ¡No te preocupes! Hemos añadido herramientas sencillas para solucionarlo sin tener que reiniciar la computadora:
+
+1. LIBERAR EL PUERTO:
+   Ejecuta este comando en la terminal para cerrar a la fuerza cualquier proceso que esté usando el puerto 9100:
+   -->  npm run liberar
+
+2. REINICIAR DIRECTAMENTE (LIBERA Y ARRANCA A LA VEZ):
+   Si prefieres liberar el puerto y arrancar el servidor inmediatamente en un solo paso, ejecuta:
+   -->  npm run reiniciar
+
+Esto cerrará cualquier proceso viejo en el puerto 9100 y levantará el servidor limpio para tu nueva prueba.
+
+
 PASO 8: CÓMO CONECTAR TU APLICACIÓN ANDROID
 -------------------------------------------
 Para que tu aplicación Android pueda conectarse con este simulador:
